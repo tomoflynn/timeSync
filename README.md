@@ -15,7 +15,7 @@ There are a number of folders containing files used by configureChrony.sh. They 
 3. newFiles - this folder contains two files name chrony.conf and chronyd used to replace the original versions on a Linux system. chronyd does not require any modifiction prior to running the script. However, in the case of chrony.conf the lines "server <enter ip address or FQDN of server here>" must be modified. The entire expression after "server " (including brackets) should be replaced with either the ip address or FQDN of the ntp server(s) with which the system is due to be synchronised. Any unused lines should either be commented out or deleted.
 4. outputFiles - as the code runs information about modifications made are saved to a file in this folder. The filename is info.<date/time> where <date/time> takes the same format as given in point 1 above. 
 
-The above folder and filename structure is also used by code in the cisBenchmark script found at https://github.com/tomoflynn/cisBenchmark. This is because once further work (and related testing) is complete configureChrony.sh will be merged with cis.sh. Users who wish to merge both scripts themselves should add the contents of timeSync/inputFiles/yumInstall to the equivalent file in cisBenchmark/inputFiles/. Next the following lines from configureChrony.sh should be added to cis.sh:
+The above folder and filename structure is also used by code in the cis.sh script found at https://github.com/tomoflynn/cisBenchmark. This is because once further work (and related testing) is complete configureChrony.sh will be merged with cis.sh. Users who wish to merge both scripts themselves should add the contents of timeSync/inputFiles/yumInstall to the equivalent file in cisBenchmark/inputFiles/. Next the following lines from configureChrony.sh should be added to cis.sh:
 
 #Next backup the original chrony.conf and chronyd files 
 #Then replace them with the corresponding files in ./newFiles
@@ -30,6 +30,7 @@ cp ./newFiles/chronyd /etc/sysconfig
 #Now enable and start chronyd
 
 systemctl enable chronyd
+
 systemctl start chronyd
 
 Future Work:
