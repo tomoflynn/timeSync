@@ -21,9 +21,11 @@ The above folder and filename structure is also used by code in the cis.sh scrip
 #Then replace them with the corresponding files in ./newFiles
 
 mv /etc/chrony.conf ./backupFiles/chrony.conf.`date +%d-%m-%y:%H:%M:%S`
+
 cp ./newFiles/chrony.conf /etc
 
 mv /etc/sysconfig/chronyd ./backupFiles/chronyd.`date +%d-%m-%y:%H:%M:%S`
+
 cp ./newFiles/chronyd /etc/sysconfig
 
 
@@ -34,5 +36,6 @@ systemctl enable chronyd
 systemctl start chronyd
 
 Future Work:
+
 At present this script checks to see if chrony is installed and, if not, installs it using yum. It then configures the system as a client for the ntp server(s) specified in timeSync/newFiles/chrony.conf. In the future the script will ask the user whether or not the system should act as an ntp server and, if a positive answer is received, appropriate changes will be made to facilitate this. These changes will include the option to use a non-standard port, generate symmetric keys for authentication and any firewall and selinux modifications required. It is envisaged that work on the next phase of this script will begin before June 2019
 
