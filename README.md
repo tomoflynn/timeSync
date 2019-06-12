@@ -18,6 +18,7 @@ There are a number of folders containing files used by configureChrony.sh. They 
 The above folder and filename structure is also used by code in the cis.sh script found at https://github.com/tomoflynn/cisBenchmark. This is because once further work (and related testing) is complete configureChrony.sh will be merged with cis.sh. Users who wish to merge both scripts themselves should add the contents of timeSync/inputFiles/yumInstall to the equivalent file in cisBenchmark/inputFiles/. Next the following lines from configureChrony.sh should be added to cis.sh:
 
 #Next backup the original chrony.conf and chronyd files 
+
 #Then replace them with the corresponding files in ./newFiles
 
 mv /etc/chrony.conf ./backupFiles/chrony.conf.`date +%d-%m-%y:%H:%M:%S`
@@ -37,5 +38,5 @@ systemctl start chronyd
 
 Future Work:
 
-At present this script checks to see if chrony is installed and, if not, installs it using yum. It then configures the system as a client for the ntp server(s) specified in timeSync/newFiles/chrony.conf. In the future the script will ask the user whether or not the system should act as an ntp server and, if a positive answer is received, appropriate changes will be made to facilitate this. These changes will include the option to use a non-standard port, generate symmetric keys for authentication and any firewall and selinux modifications required. It is envisaged that work on the next phase of this script will begin before June 2019
+At present this script checks to see if chrony is installed and, if not, installs it using yum. It then configures the system as a client for the ntp server(s) specified in timeSync/newFiles/chrony.conf. Work has begun to configure the script to ask the user whether or not the system should act as an ntp server and, given an affirmative answer, make appropriate changes to facilitate this. These changes will include the option to use a non-standard port, generate symmetric keys for authentication and any firewall and selinux modifications required.
 
